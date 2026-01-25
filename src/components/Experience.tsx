@@ -47,7 +47,7 @@ const experiences = [
     period: '2022-2025',
     description: 'Graduated on time and with above average grades from a rigorous 5-year Software Engineering program, focusing on software design, algorithms, and systems.',
     achievements: [
-      'Designed, implemented and deployed an application to Servicio Meteorológico Nacional for volcanic ash data visualization as part of my final project'
+      'Designed, implemented and deployed an application to the Servicio Meteorológico Nacional for volcanic ash data visualization as part of my final project'
     ]
   }
 ];
@@ -72,10 +72,13 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Main Timeline line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 transform md:-translate-x-0.5 rounded-full shadow-lg" style={{ backgroundColor: 'var(--text-secondary)' }}></div>
+          {/* Mobile: Centered connecting line */}
+          <div className="md:hidden absolute left-1/2 top-0 bottom-0 w-0.5 transform -translate-x-0.5 rounded-full" style={{ backgroundColor: 'var(--text-secondary)' }}></div>
+          
+          {/* Desktop: Centered timeline line */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 transform -translate-x-0.5 rounded-full shadow-lg" style={{ backgroundColor: 'var(--text-secondary)' }}></div>
 
-          <div className="space-y-16 md:space-y-20">
+          <div className="space-y-8 md:space-y-20">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -83,23 +86,17 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className={`relative flex items-center ${
+                className={`relative md:flex md:items-center md:gap-12 ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:gap-12`}
-
+                }`}
               >
-                {/* Timeline connector line */}
-                <div className={`absolute left-6 md:left-1/2 w-8 md:w-12 h-1 transform ${
-                  index % 2 === 0 ? 'md:-translate-x-full' : ''
-                } rounded-full`} style={{ backgroundColor: 'var(--text-secondary)' }}></div>
-
-                {/* Timeline dot with animation */}
+                {/* Mobile: Timeline dot connected to the line */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: index * 0.2 + 0.3, duration: 0.4 }}
                   viewport={{ once: true }}
-                  className="absolute left-6 md:left-1/2 w-5 h-5 rounded-full border-3 transform -translate-x-2.5 md:-translate-x-2.5 z-20 shadow-lg"
+                  className="hidden absolute left-1/2 w-3 h-3 rounded-full border-2 transform -translate-x-1.5 z-20"
                   style={{
                     backgroundColor: 'var(--text-primary)',
                     borderColor: 'var(--bg-primary)'
@@ -108,32 +105,54 @@ export default function Experience() {
                   <div className="w-full h-full rounded-full opacity-60" style={{ backgroundColor: 'var(--bg-primary)' }}></div>
                 </motion.div>
 
-                 {/* Content */}
-                 <div className={`ml-16 md:ml-0 w-full md:w-5/12 ${
-                   index % 2 === 0 ? 'md:text-right' : 'md:text-left'
-                 }`}>
+                {/* Desktop: Timeline dot and connector */}
+                <div className="hidden md:flex md:absolute md:left-1/2 md:items-center ">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: index * 0.2 + 0.3, duration: 0.4 }}
+                    viewport={{ once: true }}
+                    className="w-5 h-5 rounded-full border-3 transform -translate-x-2.5 z-20 shadow-lg"
+                    style={{
+                      backgroundColor: 'var(--text-primary)',
+                      borderColor: 'var(--bg-primary)'
+                    }}
+                  >
+                    <div className="w-full h-full rounded-full opacity-60" style={{ backgroundColor: 'var(--bg-primary)' }}></div>
+                  </motion.div>
+                  
+                  {/* Desktop: Timeline connector line */}
+                  <div className={`absolute w-18 h-1 rounded-full ${
+                    index % 2 === 0 ? '-translate-x-full' : ''
+                  }`} style={{ backgroundColor: 'var(--text-secondary)' }}></div>
+                </div>
+
+                 {/* Content - Centered on mobile, alternating on desktop */}
+                 <div className="flex justify-center md:justify-start md:ml-0 w-full max-w-sm md:w-5/12">
                    <div className="p-6 rounded-lg border hover:opacity-80 transition-opacity" style={{
                      backgroundColor: 'var(--bg-accent)',
                      borderColor: 'var(--border-secondary)'
                    }}>
-                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                        <h3 className="text-xl font-semibold">{exp.title}</h3>
-                        <div className="flex items-center gap-2 text-sm mt-1 md:mt-0">
-                          <Calendar size={14} style={{ color: 'var(--text-secondary)' }} />
-                          {exp.period}
-                        </div>
-                     </div>
+                      <div className="flex flex-col gap-2 mb-3">
+                         <div className="flex items-center  gap-4">
+                           <h3 className="text-xl font-semibold flex-1 pr-2">{exp.title}</h3>
+                           <div className="flex items-center gap-2 text-sm shrink-0">
+                             <Calendar size={18} style={{ color: 'var(--text-secondary)' }} />
+                             <span className="whitespace-nowrap">{exp.period}</span>
+                           </div>
+                         </div>
 
-                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-                        <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                          <Building size={16} style={{ color: 'var(--text-secondary)' }} />
-                          <span className="font-medium">{exp.company}</span>
-                        </div>
-                        <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                          <MapPin size={14} style={{ color: 'var(--text-secondary)' }} />
-                          <span className="text-sm">{exp.location}</span>
-                        </div>
-                     </div>
+                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                            <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
+                              <Building size={20} style={{ color: 'var(--text-secondary)' }} />
+                              <span className="font-medium">{exp.company}</span>
+                            </div>
+                            <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
+                              <MapPin size={18} style={{ color: 'var(--text-secondary)' }} />
+                              <span className="text-sm">{exp.location}</span>
+                            </div>
+                         </div>
+                      </div>
 
                      <p className="mb-4 leading-relaxed">{exp.description}</p>
 
