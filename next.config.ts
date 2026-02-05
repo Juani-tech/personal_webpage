@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // Forces a static export
+  output: "export",
+  basePath: "/personal_webpage",
+  assetPrefix: "/personal_webpage/",
   images: {
-    unoptimized: true, // Necessary because GH Pages doesn't support the Next.js Image Optimization API
+    unoptimized: true,
   },
 };
 
