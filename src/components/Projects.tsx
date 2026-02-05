@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Filter } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import { useState } from 'react';
 
 const basePath = process.env.NODE_ENV === 'production' ? '/personal_webpage' : '';
@@ -224,7 +224,7 @@ export default function Projects() {
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -238,49 +238,12 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-
-                {/* Links */}
-                <div className="flex gap-3">
-                  <a
-                    href={project.github}
-                     className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
-                  >
-                    <Github size={16} />
-                    Code
-                  </a>
-                  <a
-                    href={project.demo}
-                    className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
-                  >
-                    <ExternalLink size={16} />
-                    Demo
-                  </a>
-                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View More Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-all duration-200 hover:opacity-80"
-              style={{
-                backgroundColor: 'var(--bg-accent)',
-                color: 'var(--text-primary)'
-              }}
-            >
-              View All Projects
-              <ExternalLink size={16} />
-            </a>
-        </motion.div>
+
       </div>
     </section>
   );
