@@ -4,14 +4,27 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Filter } from 'lucide-react';
 import { useState } from 'react';
 
+const basePath = process.env.NODE_ENV === 'production' ? '/personal_webpage' : '';
+
 const projects = [
   {
     id: 1,
     title: 'Raft Consensus Protocol',
     description: 'A robust implementation of the Raft consensus algorithm in Go. Engineered leader election, log replication, and safety mechanisms to maintain state machine consistency across distributed nodes during network partitions.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/figure1_raft-1.webp`,
     technologies: ['Go'],
     categories: ['Distributed Systems'],
+    github: '#',
+    demo: '#',
+    featured: true
+  },
+  {
+    id: 6,
+    title: 'Git Internal Core',
+    description: 'Rust implementation of Git internals, including the packfile format and delta compression logic. Optimized for concurrent access and high-performance binary data serialization.',
+    image: `${basePath}/rustacean-flat-happy.png`,
+    technologies: ['Rust'],
+    categories: ['Systems Programming'],
     github: '#',
     demo: '#',
     featured: true
@@ -20,7 +33,7 @@ const projects = [
     id: 2,
     title: 'Sharded Key-Value Store',
     description: 'A linearizable, sharded storage system built on top of Raft. Features a shard master for configuration management and supports live state transfer between shards to ensure horizontal scalability.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/shardkv.png`,
     technologies: ['Go'],
     categories: ['Distributed Systems'],
     github: '#',
@@ -31,7 +44,7 @@ const projects = [
     id: 5,
     title: 'Distributed Data Pipeline',
     description: 'A fault-tolerant batch processing system for Steam review analytics. Utilized RabbitMQ and ZeroMQ for coordination between multiple worker nodes, ensuring reliable processing of large-scale datasets.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/Data-pipeline-automation.webp`,
     technologies: ['Python', 'RabbitMQ', 'ZeroMQ', 'Docker'],
     categories: ['Data Engineering', 'Distributed Systems'],
     github: '#',
@@ -39,21 +52,10 @@ const projects = [
     featured: true
   },
   {
-    id: 6,
-    title: 'Git Internal Core',
-    description: 'Rust implementation of Git internals, including the packfile format and delta compression logic. Optimized for concurrent access and high-performance binary data serialization.',
-    image: '/api/placeholder/400/250',
-    technologies: ['Rust'],
-    categories: ['Systems Programming'],
-    github: '#',
-    demo: '#',
-    featured: false
-  },
-  {
     id: 3,
     title: 'Volcanic Ash Visualizer (SMN)',
     description: 'Mission-critical fullstack application for the National Meteorological Service (Arg). Owned the full lifecycle—from architectural design to AWS deployment—focusing on real-time geospatial data processing.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/SMN_Logo_Alta.png`,
     technologies: ['FastAPI', 'Angular', 'PostgreSQL', 'AWS', 'Docker'],
     categories: ['Full Stack', 'Data Engineering'],
     github: '#',
@@ -64,7 +66,7 @@ const projects = [
     id: 8,
     title: 'Local-First Fitness App',
     description: 'An offline-first gym tracker built with React Native and WatermelonDB. Implemented a custom synchronization engine to handle background reconciliation with an Express backend.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/offline_first.png`,
     technologies: ['React Native', 'WatermelonDB', 'ExpressJS'],
     categories: ['Mobile', 'Full Stack'],
     github: '#',
@@ -75,7 +77,7 @@ const projects = [
     id: 4,
     title: 'TwitSnap Microservices',
     description: 'Mobile social platform utilizing a polyglot microservices architecture. Focused on decoupled communication, containerization, and scalable backend infrastructure.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/User-API-Microservice.png.webp`,
     technologies: ['React Native', 'ExpressJS', 'FastAPI', 'Firebase', 'Docker'],
     categories: ['Mobile', 'Full Stack', 'Distributed Systems'],
     github: '#',
@@ -86,7 +88,7 @@ const projects = [
     id: 7,
     title: 'VPN Detection Engine',
     description: 'Machine learning pipeline for classifying network traffic. Performed extensive feature engineering and optimized gradient-boosted models (XGBoost/CatBoost) for a high-accuracy Kaggle entry.',
-    image: '/api/placeholder/400/250',
+    image: `${basePath}/data-logopng.png`,
     technologies: ['Python', 'SciKit-Learn', 'XGBoost', 'Pandas'],
     categories: ['AI/ML', 'Data Engineering'],
     github: '#',
@@ -182,25 +184,34 @@ export default function Projects() {
                    style={{
                      backgroundColor: 'var(--bg-secondary)',
                      borderColor: 'var(--border-secondary)'
-                   }}
-                   title={`Project Image Placeholder - 400x192px (${project.title})`}>
-                {/* Visual indicator for image dimensions */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-xs font-mono mb-1 opacity-60">400×192px</div>
-                    <div className="text-4xl font-bold mb-1">{project.title.charAt(0)}</div>
-                    <div className="text-xs opacity-50">Project Image</div>
-                    <div className="text-xs opacity-40 mt-1">{project.title}</div>
-                  </div>
-                </div>
-                {/* Grid overlay for visual reference */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="w-full h-full grid grid-cols-8 grid-rows-4">
-                    {Array.from({ length: 32 }).map((_, i) => (
-                      <div key={i} className="border" style={{ borderColor: 'var(--text-primary)' }}></div>
-                    ))}
-                  </div>
-                </div>
+                   }}>
+                {project.image && !project.image.includes('placeholder') ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <>
+                    {/* Visual indicator for image dimensions */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-xs font-mono mb-1 opacity-60">400×192px</div>
+                        <div className="text-4xl font-bold mb-1">{project.title.charAt(0)}</div>
+                        <div className="text-xs opacity-50">Project Image</div>
+                        <div className="text-xs opacity-40 mt-1">{project.title}</div>
+                      </div>
+                    </div>
+                    {/* Grid overlay for visual reference */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="w-full h-full grid grid-cols-8 grid-rows-4">
+                        {Array.from({ length: 32 }).map((_, i) => (
+                          <div key={i} className="border" style={{ borderColor: 'var(--text-primary)' }}></div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Project Content */}

@@ -1,10 +1,10 @@
-# Juan Pérez - Informatics Engineer
+# Juan Ignacio Perez Di Chiazza - Software Engineer
 
-Welcome to my personal portfolio! This is where I showcase my work, skills, and journey as an informatics engineer.
+Welcome to my personal portfolio! This is where I showcase my work, skills, and journey as an software engineer.
 
 ## About Me
 
-I'm a passionate informatics engineer specializing in software development, data analysis, and system architecture. I love solving complex problems and building innovative solutions.
+I'm a passionate software engineer specializing in software development, data analysis, and system architecture. I love solving complex problems and building innovative solutions.
 
 ## What You'll Find Here
 

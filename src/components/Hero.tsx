@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import Image from 'next/image';
+
+const basePath = process.env.NODE_ENV === 'production' ? '/personal_webpage' : '';
 
 export default function Hero() {
   return (
@@ -25,12 +26,10 @@ export default function Hero() {
               borderColor: 'var(--bg-primary)'
             }}
           >
-            <Image
-              src="/me_final_project.JPG"
+            <img
+              src={`${basePath}/me_final_project.JPG`}
               alt="Juan Ignacio"
-              fill
-              className="object-cover scale-[2.0] translate-x-[-5%] translate-y-[-25%]"
-              priority
+              className="object-cover scale-[2.0] translate-x-[-5%] translate-y-[-25%] w-full h-full"
             />
           </motion.div>
 
