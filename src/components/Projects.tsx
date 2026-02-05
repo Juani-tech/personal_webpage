@@ -7,80 +7,102 @@ import { useState } from 'react';
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'Full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.',
+    title: 'Raft Consensus Protocol',
+    description: 'A robust implementation of the Raft consensus algorithm in Go. Engineered leader election, log replication, and safety mechanisms to maintain state machine consistency across distributed nodes during network partitions.',
     image: '/api/placeholder/400/250',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    category: 'Full Stack',
+    technologies: ['Go'],
+    categories: ['Distributed Systems'],
     github: '#',
     demo: '#',
     featured: true
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+    title: 'Sharded Key-Value Store',
+    description: 'A linearizable, sharded storage system built on top of Raft. Features a shard master for configuration management and supports live state transfer between shards to ensure horizontal scalability.',
     image: '/api/placeholder/400/250',
-    technologies: ['React', 'Socket.io', 'MongoDB', 'Express'],
-    category: 'Web App',
+    technologies: ['Go'],
+    categories: ['Distributed Systems'],
     github: '#',
     demo: '#',
     featured: true
   },
   {
-    id: 3,
-    title: 'AI-Powered Chatbot',
-    description: 'Intelligent chatbot built with machine learning for customer support automation and natural language processing.',
-    image: '/api/placeholder/400/250',
-    technologies: ['Python', 'TensorFlow', 'Flask', 'NLP'],
-    category: 'AI/ML',
-    github: '#',
-    demo: '#',
-    featured: false
-  },
-  {
-    id: 4,
-    title: 'Weather Dashboard',
-    description: 'Real-time weather dashboard with interactive maps, forecasts, and location-based services.',
-    image: '/api/placeholder/400/250',
-    technologies: ['React', 'OpenWeather API', 'Chart.js'],
-    category: 'Frontend',
-    github: '#',
-    demo: '#',
-    featured: false
-  },
-  {
     id: 5,
-    title: 'Mobile Fitness App',
-    description: 'Cross-platform mobile application for fitness tracking, workout planning, and health monitoring.',
+    title: 'Distributed Data Pipeline',
+    description: 'A fault-tolerant batch processing system for Steam review analytics. Utilized RabbitMQ and ZeroMQ for coordination between multiple worker nodes, ensuring reliable processing of large-scale datasets.',
     image: '/api/placeholder/400/250',
-    technologies: ['React Native', 'Firebase', 'HealthKit'],
-    category: 'Mobile',
+    technologies: ['Python', 'RabbitMQ', 'ZeroMQ', 'Docker'],
+    categories: ['Data Engineering', 'Distributed Systems'],
     github: '#',
     demo: '#',
     featured: true
   },
   {
     id: 6,
-    title: 'Blockchain Voting System',
-    description: 'Secure and transparent voting system built on blockchain technology for elections and decision-making.',
+    title: 'Git Internal Core',
+    description: 'Rust implementation of Git internals, including the packfile format and delta compression logic. Optimized for concurrent access and high-performance binary data serialization.',
     image: '/api/placeholder/400/250',
-    technologies: ['Solidity', 'Web3.js', 'Ethereum', 'React'],
-    category: 'Blockchain',
+    technologies: ['Rust'],
+    categories: ['Systems Programming'],
+    github: '#',
+    demo: '#',
+    featured: false
+  },
+  {
+    id: 3,
+    title: 'Volcanic Ash Visualizer (SMN)',
+    description: 'Mission-critical fullstack application for the National Meteorological Service (Arg). Owned the full lifecycle—from architectural design to AWS deployment—focusing on real-time geospatial data processing.',
+    image: '/api/placeholder/400/250',
+    technologies: ['FastAPI', 'Angular', 'PostgreSQL', 'AWS', 'Docker'],
+    categories: ['Full Stack', 'Data Engineering'],
+    github: '#',
+    demo: '#',
+    featured: false
+  },
+  {
+    id: 8,
+    title: 'Local-First Fitness App',
+    description: 'An offline-first gym tracker built with React Native and WatermelonDB. Implemented a custom synchronization engine to handle background reconciliation with an Express backend.',
+    image: '/api/placeholder/400/250',
+    technologies: ['React Native', 'WatermelonDB', 'ExpressJS'],
+    categories: ['Mobile', 'Full Stack'],
+    github: '#',
+    demo: '#',
+    featured: false
+  },
+  {
+    id: 4,
+    title: 'TwitSnap Microservices',
+    description: 'Mobile social platform utilizing a polyglot microservices architecture. Focused on decoupled communication, containerization, and scalable backend infrastructure.',
+    image: '/api/placeholder/400/250',
+    technologies: ['React Native', 'ExpressJS', 'FastAPI', 'Firebase', 'Docker'],
+    categories: ['Mobile', 'Full Stack', 'Distributed Systems'],
+    github: '#',
+    demo: '#',
+    featured: false
+  },
+  {
+    id: 7,
+    title: 'VPN Detection Engine',
+    description: 'Machine learning pipeline for classifying network traffic. Performed extensive feature engineering and optimized gradient-boosted models (XGBoost/CatBoost) for a high-accuracy Kaggle entry.',
+    image: '/api/placeholder/400/250',
+    technologies: ['Python', 'SciKit-Learn', 'XGBoost', 'Pandas'],
+    categories: ['AI/ML', 'Data Engineering'],
     github: '#',
     demo: '#',
     featured: false
   }
 ];
 
-const categories = ['All', 'Full Stack', 'Web App', 'Frontend', 'Mobile', 'AI/ML', 'Blockchain'];
+const categories = ['All', 'Full Stack', 'Mobile', 'AI/ML', 'Distributed Systems', 'Data Engineering', 'Systems Programming'];
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [showFeatured, setShowFeatured] = useState(false);
 
   const filteredProjects = projects.filter(project => {
-    const categoryMatch = selectedCategory === 'All' || project.category === selectedCategory;
+    const categoryMatch = selectedCategory === 'All' || project.categories.includes(selectedCategory);
     const featuredMatch = !showFeatured || project.featured;
     return categoryMatch && featuredMatch;
   });
@@ -143,19 +165,13 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div
-          layout
+        <div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredProjects.map((project, index) => (
-            <motion.div
+          {filteredProjects.map((project) => (
+            <div
               key={project.id}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="rounded-lg overflow-hidden border transition-all duration-300 group shadow-sm hover:shadow-md"
+              className="rounded-lg overflow-hidden border transition-all duration-300 group shadow-sm hover:shadow-md hover:-translate-y-1"
               style={{
                 backgroundColor: 'var(--bg-accent)',
                 borderColor: 'var(--border-secondary)'
@@ -230,9 +246,9 @@ export default function Projects() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* View More Button */}
         <motion.div

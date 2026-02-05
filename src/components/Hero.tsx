@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 import TextType from '../components/TextType'
 
 export default function Hero() {
@@ -14,34 +15,24 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 shadow-xl relative overflow-hidden"
+            className="w-48 h-48 mx-auto rounded-full border-4 shadow-xl relative overflow-hidden"
             style={{
               backgroundColor: 'var(--bg-accent)',
               borderColor: 'var(--bg-primary)'
             }}
-            title="Profile Image Placeholder - 128x128px (square)"
           >
-            {/* Visual indicator for image dimensions */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center" style={{ color: 'var(--text-primary)' }}>
-                <div className="text-xs font-mono mb-1 opacity-60">128×128px</div>
-                <div className="text-lg font-bold">YN</div>
-                <div className="text-xs opacity-50">Profile Photo</div>
-              </div>
-            </div>
-            {/* Grid overlay for visual reference */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="w-full h-full grid grid-cols-4 grid-rows-4">
-                {Array.from({ length: 16 }).map((_, i) => (
-                  <div key={i} className="border" style={{ borderColor: 'var(--text-primary)' }}></div>
-                ))}
-              </div>
-            </div>
+            <Image
+              src="/me_final_project.JPG"
+              alt="Juan Ignacio"
+              fill
+              className="object-cover scale-[2.0] translate-x-[-5%] translate-y-[-25%]"
+              priority
+            />
           </motion.div>
 
           <motion.div

@@ -73,14 +73,10 @@ export default function About() {
           >
              <h3 className="text-2xl font-semibold mb-4">Technical Skills</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {skills.map((skill, index) => (
-                <motion.div
+              {skills.map((skill) => (
+                <div
                   key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="p-4 rounded-lg border hover:opacity-80 transition-opacity shadow-sm"
+                  className="p-4 rounded-lg border hover:opacity-80 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
                   style={{
                     backgroundColor: 'var(--bg-accent)',
                     borderColor: 'var(--border-secondary)'
@@ -91,30 +87,20 @@ export default function About() {
                     <h4 className="font-semibold">{skill.name}</h4>
                   </div>
                   <p className="text-sm">{skill.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
         </div>
 
-        {/* Interests */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-20"
-        >
+          {/* Interests */}
+        <div className="mt-20">
           <h3 className="text-2xl font-semibold text-center mb-8">Beyond Code</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {interests.map((interest, index) => (
-              <motion.div
+            {interests.map((interest) => (
+              <div
                 key={interest.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="text-center p-6 rounded-lg border hover:opacity-80 transition-opacity shadow-sm"
+                className="text-center p-6 rounded-lg border hover:opacity-80 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
                 style={{
                   backgroundColor: 'var(--bg-accent)',
                   borderColor: 'var(--border-secondary)'
@@ -123,10 +109,10 @@ export default function About() {
                 <interest.icon className="mx-auto mb-3" size={32} style={{ color: 'var(--text-secondary)' }} />
                 <h4 className="font-semibold mb-2">{interest.name}</h4>
                 <p className="text-sm">{interest.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
