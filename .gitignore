@@ -38,4 +38,34 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
+# GitHub Pages deployment - keep next-env.d.ts for build
+# next-env.d.ts
+
+# Playwright test files (not needed for deployment)
+/playwright-report/
+/test-results/
+/tests/
+playwright.config.ts
+
+# Test and verification scripts (not needed for deployment)
+manual-test.js
+test-css-simple.js
+test-css-variables.js
+verify-basic.js
+verify-theme.js
+seed.spec.ts
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# OS files
+Thumbs.db

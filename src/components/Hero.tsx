@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import TextType from '../components/TextType'
 
 export default function Hero() {
   return (

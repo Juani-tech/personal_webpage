@@ -48,17 +48,13 @@ export default function About() {
             <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
             <div className="space-y-4 leading-relaxed">
               <p>
-                Graduated with a degree in Software Engineering from FIUBA (Universidad de Buenos Aires, Facultad de Ingenieria), I&apos;m passionate about solving complex problems. What started as curiosity has evolved
-                into a career dedicated to solving complex problems through elegant code.
+                What started as a curiosity for how computers communicate has evolved into a career building fault-tolerant distributed systems. As a FIUBA Software Engineer, I focus on the &apos;hidden&apos; parts of the stack: consensus algorithms, concurrency, and high-throughput data pipelines.
               </p>
               <p>
-                My experience spans across web development, backend systems, and software architecture.
-                I believe in writing clean, maintainable code that not only works but also tells a story
-                about the problem it solves.
+                I thrive on the challenge of making complex backend architectures feel seamless. Whether I&apos;m working with Go, Rust, or Python, my goal is always the same: building systems that are as robust as they are efficient.
               </p>
               <p>
-                When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source
-                projects, or enjoying a mate while brainstorming the next big idea.
+                When I&apos;m not at the keyboard, I&apos;m exploring my interests in mechanics, electronics and physics, investigating how systems function from the hardware level up, or tinkering with a new personal project.   
               </p>
             </div>
           </motion.div>

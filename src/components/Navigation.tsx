@@ -62,9 +62,6 @@ export default function Navigation() {
             <a href="#" className="transition-colors hover:opacity-80" style={{ color: 'var(--text-secondary)' }}>
               <Linkedin size={20} />
             </a>
-            <a href="#" className="transition-colors hover:opacity-80" style={{ color: 'var(--text-secondary)' }}>
-              <Mail size={20} />
-            </a>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg transition-colors hover:opacity-80"

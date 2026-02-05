@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { MapPin, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react';
+import { MapPin, Github, Linkedin, ExternalLink } from 'lucide-react';
 
 const contactInfo = [
   {
@@ -26,8 +26,7 @@ const contactInfo = [
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Juani-tech', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/juani-perez-di-chiazza/', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com/yourusername', label: 'Twitter' }
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/juani-perez-di-chiazza/', label: 'LinkedIn' }
 ];
 
 export default function Contact() {
@@ -160,21 +159,6 @@ export default function Contact() {
                 <ExternalLink size={16} className="opacity-60" />
               </a>
               
-              <a
-                href="https://twitter.com/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-6 py-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] hover:shadow-md border"
-                style={{
-                  backgroundColor: 'var(--bg-secondary)',
-                  borderColor: 'var(--border-secondary)',
-                  color: 'var(--text-primary)'
-                }}
-              >
-                <Twitter size={20} />
-                Follow on Twitter
-                <ExternalLink size={16} className="opacity-60" />
-              </a>
             </div>
             
             <div className="mt-6 pt-6 border-t" style={{ borderColor: 'var(--border-secondary)' }}>
