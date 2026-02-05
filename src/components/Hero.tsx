@@ -87,7 +87,8 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      <motion.a
+        href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
@@ -101,7 +102,7 @@ export default function Hero() {
           >
             <ChevronDown size={32} />
           </motion.div>
-      </motion.div>
+      </motion.a>
     </section>
   );
 }
