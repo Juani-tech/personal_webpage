@@ -29,7 +29,7 @@ const experiences = [
   //   ]
   // },
   {
-    title: 'Software Engineering Intern',
+    title: 'Backend Software Engineer',
     company: 'JPMorgan Chase & Co.',
     location: 'Buenos Aires, Argentina',
     period: '2025 - now',
